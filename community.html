@@ -183,81 +183,90 @@
     <div id="globe-wrap">
       <canvas id="gc"></canvas>
       <div id="globe-loading">Loading…</div>
+      <div id="bubble-chart"></div>
       <div id="dataset-toggle">
-        <span class="dt-btn active">Community</span>
-        <a href="globe.html" class="dt-btn">Research</a>
-        <a href="globe.html" class="dt-btn">Reddit · r/Dreams</a>
+        <button class="dt-btn active" data-mode="community" onclick="switchMode('community')">Community</button>
+        <button class="dt-btn" data-mode="research" onclick="switchMode('research')">Research</button>
+        <button class="dt-btn" data-mode="reddit" onclick="switchMode('reddit')">Reddit · r/Dreams</button>
       </div>
     </div>
 
     <div id="sidebar">
 
-      <div id="summary-strip">
-        <div class="strip-label">
-          <span>Right now</span>
-          <span id="dream-count">—</span>
+      <!-- Community sidebar -->
+      <div id="community-sidebar" style="display:contents">
+        <div id="summary-strip">
+          <div class="strip-label"><span>Right now</span><span id="dream-count">—</span></div>
+          <div id="summary-text" class="loading">Loading collective dreamscape…</div>
         </div>
-        <div id="summary-text" class="loading">Loading collective dreamscape…</div>
-      </div>
-
-      <div id="sidebar-body">
-
-        <!-- Default state -->
-        <div id="placeholder">
-          <p class="placeholder-hint">Each dot is a real dream. Click one to read it. Connected dots share a deep resonance — symbols, emotions, or images that crossed borders without knowing it.</p>
-        </div>
-
-        <!-- Dream detail -->
-        <div id="dream-detail">
-          <div class="detail-meta">
-            <span class="detail-region" id="d-region"></span>
-            <span class="detail-date" id="d-date"></span>
+        <div id="sidebar-body">
+          <div id="placeholder">
+            <p class="placeholder-hint">Each dot is a real dream. Click one to read it. Connected dots share a deep resonance — symbols, emotions, or images that crossed borders without knowing it.</p>
           </div>
-          <p class="detail-text" id="d-text"></p>
-          <div class="detail-themes" id="d-themes"></div>
-          <div id="d-penpal"></div>
-          <div class="section-label" id="conn-label"></div>
-          <div id="d-connections"></div>
+          <div id="dream-detail">
+            <div class="detail-meta">
+              <span class="detail-region" id="d-region"></span>
+              <span class="detail-date" id="d-date"></span>
+            </div>
+            <p class="detail-text" id="d-text"></p>
+            <div class="detail-themes" id="d-themes"></div>
+            <div id="d-penpal"></div>
+            <div class="section-label" id="conn-label"></div>
+            <div id="d-connections"></div>
+          </div>
+          <div id="submit-form">
+            <div class="form-title">Share a dream</div>
+            <div class="form-sub">Appears on the map anonymously. We'll find others who dreamed something similar.</div>
+            <label class="field-label">Describe your dream</label>
+            <textarea id="dream-text" placeholder="I was standing at the edge of something familiar when…"></textarea>
+            <label class="field-label">Your region</label>
+            <select id="dream-region">
+              <option value="N. America">N. America</option>
+              <option value="Latin America">Latin America</option>
+              <option value="W. Europe">W. Europe</option>
+              <option value="E. Europe & Russia">E. Europe &amp; Russia</option>
+              <option value="Middle East & N.Africa">Middle East &amp; N. Africa</option>
+              <option value="Sub-Saharan Africa">Sub-Saharan Africa</option>
+              <option value="South Asia">South Asia</option>
+              <option value="East Asia">East Asia</option>
+              <option value="Oceania">Oceania</option>
+            </select>
+            <label class="field-label">Open to pen pals? <span style="opacity:.5">(optional)</span></label>
+            <input id="dream-contact" type="text" placeholder="email or @handle" />
+            <div class="contact-hint">Shown on your dream — people who resonate can reach out.</div>
+            <button id="submit-btn">Share dream →</button>
+            <div id="submit-error"></div>
+            <div id="submit-status"></div>
+          </div>
+          <div id="submit-result">
+            <div class="section-label" style="margin-bottom:10px">Your dream</div>
+            <p class="result-title" id="r-essence"></p>
+            <div class="section-label" id="r-matches-label"></div>
+            <div id="r-matches"></div>
+          </div>
         </div>
-
-        <!-- Inline submit form -->
-        <div id="submit-form">
-          <div class="form-title">Share a dream</div>
-          <div class="form-sub">Appears on the map anonymously. We'll find others who dreamed something similar.</div>
-          <label class="field-label">Describe your dream</label>
-          <textarea id="dream-text" placeholder="I was standing at the edge of something familiar when…"></textarea>
-          <label class="field-label">Your region</label>
-          <select id="dream-region">
-            <option value="N. America">N. America</option>
-            <option value="Latin America">Latin America</option>
-            <option value="W. Europe">W. Europe</option>
-            <option value="E. Europe & Russia">E. Europe &amp; Russia</option>
-            <option value="Middle East & N.Africa">Middle East &amp; N. Africa</option>
-            <option value="Sub-Saharan Africa">Sub-Saharan Africa</option>
-            <option value="South Asia">South Asia</option>
-            <option value="East Asia">East Asia</option>
-            <option value="Oceania">Oceania</option>
-          </select>
-          <label class="field-label">Open to pen pals? <span style="opacity:.5">(optional)</span></label>
-          <input id="dream-contact" type="text" placeholder="email or @handle" />
-          <div class="contact-hint">Shown on your dream — people who resonate can reach out.</div>
-          <button id="submit-btn">Share dream →</button>
-          <div id="submit-error"></div>
-          <div id="submit-status"></div>
+        <div id="add-cta">
+          <button id="open-submit">Add your dream →</button>
         </div>
-
-        <!-- Result after submission -->
-        <div id="submit-result">
-          <div class="section-label" style="margin-bottom:10px">Your dream</div>
-          <p class="result-title" id="r-essence"></p>
-          <div class="section-label" id="r-matches-label"></div>
-          <div id="r-matches"></div>
-        </div>
-
       </div>
 
-      <div id="add-cta">
-        <button id="open-submit">Add your dream →</button>
+      <!-- Research sidebar -->
+      <div id="research-sidebar" style="display:none;flex-direction:column;flex:1;overflow:hidden;">
+        <div style="padding:20px 22px;border-bottom:0.5px solid rgba(0,0,0,0.07);flex-shrink:0;">
+          <div id="panel-label" style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#a8a49e;margin-bottom:14px;font-family:-apple-system,sans-serif;">Dream Atlas</div>
+          <p id="research-ph" style="font-size:12px;color:#b0aca6;line-height:1.65;font-family:-apple-system,sans-serif;">Hover a region to explore its dreamscape.</p>
+          <div id="research-pc" style="display:none;">
+            <div id="research-region" style="font-family:'EB Garamond',serif;font-size:16px;font-style:italic;color:#1a1814;margin-bottom:10px;"></div>
+            <div id="research-themes"></div>
+          </div>
+        </div>
+        <div id="research-legend" style="padding:16px 22px;display:flex;flex-direction:column;gap:6px;overflow-y:auto;font-family:-apple-system,sans-serif;flex:1;"></div>
+      </div>
+
+      <!-- Reddit sidebar -->
+      <div id="reddit-sidebar" style="display:none;flex-direction:column;padding:20px 22px;">
+        <div style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#a8a49e;margin-bottom:12px;font-family:-apple-system,sans-serif;">r/Dreams</div>
+        <p style="font-size:12px;color:#b0aca6;line-height:1.7;font-family:-apple-system,sans-serif;">Keyword analysis of 1,299 posts from r/Dreams, r/LucidDreaming, and r/Nightmares.<br><br>Bubble size = mention frequency across the corpus.</p>
       </div>
 
     </div>
@@ -265,6 +274,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+  <script src="data-reddit.js"></script>
   <script src="community.js"></script>
 </body>
 </html>
