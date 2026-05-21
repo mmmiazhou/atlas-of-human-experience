@@ -167,6 +167,15 @@
 
     /* Result */
     #submit-result { display: none; }
+    #another-btn {
+      margin-top: 18px; width: 100%;
+      font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase;
+      color: #a8a49e; background: none; border: 0.5px solid rgba(0,0,0,0.12);
+      border-radius: 2px; padding: 9px; cursor: pointer;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    #another-btn:hover { color: #1a1814; border-color: rgba(0,0,0,0.28); }
     .result-title { font-family: 'EB Garamond', Georgia, serif; font-size: 15px; font-style: italic; color: #1a1814; margin-bottom: 14px; line-height: 1.6; }
 
     /* Bottom CTA */
@@ -261,6 +270,7 @@
             <p class="result-title" id="r-essence"></p>
             <div class="section-label" id="r-matches-label"></div>
             <div id="r-matches"></div>
+            <button id="another-btn">Share another dream</button>
           </div>
         </div>
         <div id="add-cta">

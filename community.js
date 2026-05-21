@@ -369,6 +369,7 @@ function showSidebarState(id) {
     document.getElementById(s).style.display = s===id ? 'block' : 'none';
   });
   document.getElementById('open-submit').textContent = id==='submit-form' ? '← Cancel' : 'Add your dream →';
+  document.getElementById('add-cta').style.display = id==='submit-result' ? 'none' : 'block';
   if (id==='submit-form') document.getElementById('dream-text').focus();
 }
 
@@ -451,8 +452,17 @@ window.addEventListener('resize', resize);
 // ── Submission ────────────────────────────────────────────────────────────────
 
 document.getElementById('open-submit').addEventListener('click', () => {
-  const isForm = document.getElementById('submit-form').style.display==='block';
-  showSidebarState(isForm ? (activeDreamId?'dream-detail':'placeholder') : 'submit-form');
+  const isForm = document.getElementById('submit-form').style.display === 'block';
+  if (isForm) {
+    showSidebarState(activeDreamId ? 'dream-detail' : 'placeholder');
+  } else {
+    document.getElementById('dream-text').value = '';
+    document.getElementById('dream-contact').value = '';
+    document.getElementById('submit-error').textContent = '';
+    document.getElementById('submit-btn').disabled = false;
+    document.getElementById('submit-btn').textContent = 'Share dream →';
+    showSidebarState('submit-form');
+  }
 });
 
 document.getElementById('submit-btn').addEventListener('click', async () => {
@@ -484,13 +494,22 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
       mEl.querySelectorAll('.conn-card').forEach(card=>card.addEventListener('click',()=>selectDream(card.dataset.id)));
     }
     showSidebarState('submit-result');
-    document.getElementById('open-submit').textContent='Add your dream →';
     document.getElementById('sidebar-body').scrollTo({top:0,behavior:'smooth'});
     selectDream(dream.id);
   } catch {
     document.getElementById('submit-error').textContent='Something went wrong. Please try again.';
     btn.disabled=false; btn.textContent='Share dream →'; document.getElementById('submit-status').textContent='';
   }
+});
+
+document.getElementById('another-btn').addEventListener('click', () => {
+  document.getElementById('dream-text').value = '';
+  document.getElementById('dream-contact').value = '';
+  document.getElementById('submit-error').textContent = '';
+  document.getElementById('submit-status').textContent = '';
+  document.getElementById('submit-btn').disabled = false;
+  document.getElementById('submit-btn').textContent = 'Share dream →';
+  showSidebarState('submit-form');
 });
 
 // ── Animate ───────────────────────────────────────────────────────────────────
