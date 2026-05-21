@@ -32,13 +32,15 @@ const canvas = document.getElementById('gc');
 const wrap = document.getElementById('globe-wrap');
 
 function resize() {
-  const w = wrap.clientWidth, h = wrap.clientHeight;
-  if (!w || !h) { requestAnimationFrame(resize); return; }
-  const s = Math.max(100, Math.min(w, h, 760) - 24);
+  const rect = wrap.getBoundingClientRect();
+  const w = rect.width, h = rect.height;
+  if (!w || !h) return;
+  const s = Math.max(100, Math.min(w, h, 760) - 32);
   canvas.width = s; canvas.height = s;
   renderer.setSize(s, s);
   camera.aspect = 1; camera.updateProjectionMatrix();
 }
+new ResizeObserver(resize).observe(wrap);
 
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
 renderer.setClearColor(0xf9f8f5, 1);
