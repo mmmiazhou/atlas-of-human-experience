@@ -57,6 +57,20 @@
       display: none; position: absolute; inset: 0;
       background: #f9f8f5;
     }
+    /* Research legend rows */
+    .lrow {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 10px; color: #8a8680; cursor: pointer;
+      letter-spacing: 0.02em; transition: color 0.2s;
+    }
+    .lrow:hover, .lrow.active { color: #1a1814; }
+    .ldot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+    /* Research theme bars */
+    .br { margin: 5px 0; }
+    .bl { display: flex; justify-content: space-between; margin-bottom: 2px; font-size: 10.5px; color: #8a8680; }
+    .bl b { color: #1a1814; font-weight: 500; }
+    .bb { height: 2px; background: #eeede9; border-radius: 2px; overflow: hidden; }
+    .bf { height: 2px; border-radius: 2px; opacity: 0.82; }
     #globe-loading {
       position: absolute; font-size: 11px; color: #b0aca6;
       letter-spacing: 0.1em; text-transform: uppercase;
