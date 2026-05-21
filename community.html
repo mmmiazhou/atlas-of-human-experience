@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dream Atlas — Community</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body, html { overflow: hidden; }
+
+    .community-layout {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      grid-template-rows: auto 1fr;
+      height: calc(100vh - 56px);
+    }
+
+    .dream-breadcrumb {
+      grid-column: 1 / -1;
+      padding: 10px 48px;
+      border-bottom: 0.5px solid rgba(0,0,0,0.08);
+      font-size: 11px; color: #a8a49e;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      letter-spacing: 0.04em;
+    }
+    .dream-breadcrumb a { color: #a8a49e; text-decoration: none; }
+    .dream-breadcrumb a:hover { color: #1a1814; }
+
+    /* Dataset toggle (shared with globe.html) */
+    #dataset-toggle {
+      position: absolute; top: 16px; left: 50%; transform: translateX(-50%);
+      display: flex; background: rgba(252,251,248,0.94);
+      border: 0.5px solid rgba(0,0,0,0.12); border-radius: 3px; overflow: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif; z-index: 10;
+    }
+    .dt-btn {
+      font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase;
+      padding: 7px 16px; cursor: pointer; background: none; border: none;
+      color: #a8a49e; transition: color 0.2s, background 0.2s; white-space: nowrap;
+      text-decoration: none; display: inline-flex; align-items: center;
+    }
+    .dt-btn + .dt-btn { border-left: 0.5px solid rgba(0,0,0,0.1); }
+    .dt-btn.active { color: #1a1814; background: rgba(0,0,0,0.04); }
+    .dt-btn:hover:not(.active) { color: #6b6760; }
+
+    /* Globe pane */
+    #globe-wrap {
+      position: relative; min-height: 0; background: #f9f8f5;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    #gc { cursor: grab; display: block; }
+    #gc:active { cursor: grabbing; }
+    #globe-loading {
+      position: absolute; font-size: 11px; color: #b0aca6;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    /* Sidebar */
+    #sidebar {
+      border-left: 0.5px solid rgba(0,0,0,0.09);
+      background: #faf9f6;
+      display: flex; flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* Summary strip */
+    #summary-strip {
+      padding: 18px 22px 16px;
+      border-bottom: 0.5px solid rgba(0,0,0,0.07);
+      flex-shrink: 0;
+    }
+    .strip-label {
+      font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: #a8a49e; margin-bottom: 7px; display: flex; justify-content: space-between;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    #summary-text {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 13.5px; line-height: 1.65; color: #3a3630; font-style: italic;
+    }
+    #summary-text.loading { color: #c8c4be; font-style: normal; font-size: 12px; }
+
+    /* Sidebar body */
+    #sidebar-body { flex: 1; overflow-y: auto; }
+
+    /* Shared section padding */
+    #placeholder, #dream-detail, #submit-form, #submit-result { padding: 20px 22px; }
+
+    /* Placeholder */
+    .placeholder-hint {
+      font-size: 12px; color: #b0aca6; line-height: 1.7;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    /* Dream detail */
+    #dream-detail { display: none; }
+    .detail-meta { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+    .detail-region { font-family: 'EB Garamond', Georgia, serif; font-size: 13px; font-style: italic; color: #a8a49e; }
+    .detail-date { font-size: 10px; color: #c8c4be; font-family: -apple-system, sans-serif; }
+    .detail-text { font-family: 'EB Garamond', Georgia, serif; font-size: 14.5px; line-height: 1.7; color: #1a1814; margin-bottom: 12px; }
+    .detail-themes { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 14px; }
+    .theme-chip { font-size: 9px; letter-spacing: 0.07em; text-transform: uppercase; padding: 3px 8px; border-radius: 10px; color: rgba(255,255,255,0.92); font-family: -apple-system, sans-serif; }
+    .penpal-row { display: flex; align-items: center; gap: 10px; padding: 9px 11px; background: rgba(0,0,0,0.025); border-radius: 3px; margin-bottom: 14px; }
+    .penpal-icon { font-size: 14px; flex-shrink: 0; }
+    .penpal-label { font-size: 10px; color: #a8a49e; margin-bottom: 1px; font-family: -apple-system, sans-serif; }
+    .penpal-contact { font-size: 12px; color: #3a3630; word-break: break-all; }
+    .section-label { font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #a8a49e; margin-bottom: 8px; font-family: -apple-system, sans-serif; }
+    .conn-card { padding: 9px 0; border-top: 0.5px solid rgba(0,0,0,0.07); cursor: pointer; }
+    .conn-card:hover .conn-essence { color: #1a1814; }
+    .conn-reason-text { font-size: 11px; color: #6b6760; line-height: 1.55; margin-bottom: 3px; }
+    .conn-essence { font-family: 'EB Garamond', Georgia, serif; font-size: 13px; font-style: italic; color: #8a8680; line-height: 1.5; transition: color 0.15s; }
+    .conn-region-tag { font-size: 10px; color: #b0aca6; margin-top: 2px; font-family: -apple-system, sans-serif; }
+
+    /* Submit form — inline in sidebar */
+    #submit-form { display: none; }
+    .form-title { font-family: 'EB Garamond', Georgia, serif; font-size: 18px; font-weight: 400; color: #1a1814; margin-bottom: 4px; }
+    .form-sub { font-size: 11px; color: #a8a49e; line-height: 1.6; margin-bottom: 18px; font-family: -apple-system, sans-serif; }
+    .field-label { font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; color: #a8a49e; margin-bottom: 5px; display: block; font-family: -apple-system, sans-serif; }
+    #dream-text {
+      width: 100%; height: 120px; resize: none;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 14px; color: #1a1814; line-height: 1.65;
+      background: rgba(0,0,0,0.025); border: 0.5px solid rgba(0,0,0,0.12);
+      border-radius: 3px; padding: 10px 11px; outline: none; margin-bottom: 13px;
+    }
+    #dream-text:focus { border-color: rgba(0,0,0,0.3); background: rgba(0,0,0,0.02); }
+    #dream-text::placeholder { color: #c8c4be; font-style: italic; }
+    #dream-region, #dream-contact {
+      width: 100%; font-size: 12px; color: #1a1814;
+      background: rgba(0,0,0,0.025); border: 0.5px solid rgba(0,0,0,0.12);
+      border-radius: 3px; padding: 7px 10px; outline: none; margin-bottom: 13px;
+      font-family: -apple-system, sans-serif;
+    }
+    #dream-region:focus, #dream-contact:focus { border-color: rgba(0,0,0,0.3); }
+    .contact-hint { font-size: 10px; color: #b0aca6; margin-top: -9px; margin-bottom: 13px; line-height: 1.5; font-family: -apple-system, sans-serif; }
+    #submit-btn {
+      width: 100%; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase;
+      color: #f9f8f5; background: #1a1814; border: none; border-radius: 2px;
+      padding: 10px; cursor: pointer; font-family: -apple-system, sans-serif;
+      transition: opacity 0.2s;
+    }
+    #submit-btn:disabled { opacity: 0.4; cursor: default; }
+    #submit-error { font-size: 11px; color: #c05050; margin-top: 9px; line-height: 1.5; }
+    #submit-status { font-size: 11px; color: #a8a49e; margin-top: 9px; }
+
+    /* Result */
+    #submit-result { display: none; }
+    .result-title { font-family: 'EB Garamond', Georgia, serif; font-size: 15px; font-style: italic; color: #1a1814; margin-bottom: 14px; line-height: 1.6; }
+
+    /* Bottom CTA */
+    #add-cta {
+      padding: 16px 22px;
+      border-top: 0.5px solid rgba(0,0,0,0.07);
+      flex-shrink: 0;
+    }
+    #open-submit {
+      width: 100%; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase;
+      color: #f9f8f5; background: #1a1814; border: none; border-radius: 2px;
+      padding: 10px; cursor: pointer; font-family: -apple-system, sans-serif;
+      transition: opacity 0.2s;
+    }
+    #open-submit:hover { opacity: 0.8; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">Atlas <span>of human experience</span></div>
+    <div class="nav-links">
+      <a href="index.html">Collection</a>
+      <a href="about.html">About</a>
+    </div>
+  </nav>
+
+  <div class="community-layout">
+
+    <div class="dream-breadcrumb"><a href="index.html">Collection</a> &nbsp;/&nbsp; What the world dreams about</div>
+
+    <div id="globe-wrap">
+      <canvas id="gc"></canvas>
+      <div id="globe-loading">Loading…</div>
+      <div id="dataset-toggle">
+        <span class="dt-btn active">Community</span>
+        <a href="globe.html" class="dt-btn">Research</a>
+        <a href="globe.html" class="dt-btn">Reddit · r/Dreams</a>
+      </div>
+    </div>
+
+    <div id="sidebar">
+
+      <div id="summary-strip">
+        <div class="strip-label">
+          <span>Right now</span>
+          <span id="dream-count">—</span>
+        </div>
+        <div id="summary-text" class="loading">Loading collective dreamscape…</div>
+      </div>
+
+      <div id="sidebar-body">
+
+        <!-- Default state -->
+        <div id="placeholder">
+          <p class="placeholder-hint">Each dot is a real dream. Click one to read it. Connected dots share a deep resonance — symbols, emotions, or images that crossed borders without knowing it.</p>
+        </div>
+
+        <!-- Dream detail -->
+        <div id="dream-detail">
+          <div class="detail-meta">
+            <span class="detail-region" id="d-region"></span>
+            <span class="detail-date" id="d-date"></span>
+          </div>
+          <p class="detail-text" id="d-text"></p>
+          <div class="detail-themes" id="d-themes"></div>
+          <div id="d-penpal"></div>
+          <div class="section-label" id="conn-label"></div>
+          <div id="d-connections"></div>
+        </div>
+
+        <!-- Inline submit form -->
+        <div id="submit-form">
+          <div class="form-title">Share a dream</div>
+          <div class="form-sub">Appears on the map anonymously. We'll find others who dreamed something similar.</div>
+          <label class="field-label">Describe your dream</label>
+          <textarea id="dream-text" placeholder="I was standing at the edge of something familiar when…"></textarea>
+          <label class="field-label">Your region</label>
+          <select id="dream-region">
+            <option value="N. America">N. America</option>
+            <option value="Latin America">Latin America</option>
+            <option value="W. Europe">W. Europe</option>
+            <option value="E. Europe & Russia">E. Europe &amp; Russia</option>
+            <option value="Middle East & N.Africa">Middle East &amp; N. Africa</option>
+            <option value="Sub-Saharan Africa">Sub-Saharan Africa</option>
+            <option value="South Asia">South Asia</option>
+            <option value="East Asia">East Asia</option>
+            <option value="Oceania">Oceania</option>
+          </select>
+          <label class="field-label">Open to pen pals? <span style="opacity:.5">(optional)</span></label>
+          <input id="dream-contact" type="text" placeholder="email or @handle" />
+          <div class="contact-hint">Shown on your dream — people who resonate can reach out.</div>
+          <button id="submit-btn">Share dream →</button>
+          <div id="submit-error"></div>
+          <div id="submit-status"></div>
+        </div>
+
+        <!-- Result after submission -->
+        <div id="submit-result">
+          <div class="section-label" style="margin-bottom:10px">Your dream</div>
+          <p class="result-title" id="r-essence"></p>
+          <div class="section-label" id="r-matches-label"></div>
+          <div id="r-matches"></div>
+        </div>
+
+      </div>
+
+      <div id="add-cta">
+        <button id="open-submit">Add your dream →</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+  <script src="community.js"></script>
+</body>
+</html>

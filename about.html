@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Dream Atlas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .about-page { max-width: 640px; padding: 72px 48px; }
+    .about-page h1 { font-family: 'EB Garamond', serif; font-size: 40px; font-weight: 400; line-height: 1.15; margin-bottom: 32px; }
+    .about-page h1 em { font-style: italic; }
+    .about-page h2 { font-family: 'EB Garamond', serif; font-size: 22px; font-weight: 400; margin: 40px 0 12px; }
+    .about-page p { font-size: 14px; color: #6b6760; line-height: 1.8; margin-bottom: 14px; }
+    .about-page a { color: #1a1814; }
+    .sources { margin-top: 12px; }
+    .source-row { display: flex; gap: 12px; padding: 12px 0; border-top: 0.5px solid rgba(0,0,0,0.08); font-size: 12px; }
+    .source-name { color: #1a1814; font-weight: 500; min-width: 160px; }
+    .source-desc { color: #a8a49e; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">Atlas <span>of human experience</span></div>
+    <div class="nav-links">
+      <a href="index.html">Collection</a>
+      <a href="about.html" class="active">About</a>
+    </div>
+  </nav>
+
+  <div class="about-page">
+    <div class="hero-label">About</div>
+    <h1>Data as a lens on <em>human experience</em></h1>
+
+    <p>The Atlas of Human Experience is a collection of data visualizations exploring what it means to be human — how we sleep and dream, where we move, what we fear, and what brings us joy.</p>
+
+    <p>Each piece starts with a question rather than a dataset. The data is gathered second, chosen to illuminate rather than to impress.</p>
+
+    <h2>The dream globe</h2>
+    <p>The dream visualization draws on cross-cultural psychology research, including the Sleep and Dream Database (SDDb) and published academic studies on recurring dream themes. The regional groupings and counts are illustrative — grounded in real research patterns but not a direct download of any single dataset.</p>
+    <p>The globe is built with Three.js for 3D rendering, TopoJSON for real country geometry, and vanilla JavaScript for everything else. No frameworks.</p>
+
+    <h2>Data sources</h2>
+    <div class="sources">
+      <div class="source-row">
+        <span class="source-name">Sleep and Dream Database</span>
+        <span class="source-desc">sleepanddreamdatabase.org — open access, 44,500+ dream reports</span>
+      </div>
+      <div class="source-row">
+        <span class="source-name">DreamBank</span>
+        <span class="source-desc">dreambank.net — Domhoff & Schneider, open dream corpus</span>
+      </div>
+      <div class="source-row">
+        <span class="source-name">Natural Earth / TopoJSON</span>
+        <span class="source-desc">world-atlas — country geometry, open license</span>
+      </div>
+    </div>
+
+    <h2>Built with</h2>
+    <p>Three.js · TopoJSON · EB Garamond · Vercel</p>
+  </div>
+
+  <footer>
+    <p>Atlas of Human Experience</p>
+    <p>Open data · Three.js · D3 · TopoJSON</p>
+  </footer>
+
+</body>
+</html>

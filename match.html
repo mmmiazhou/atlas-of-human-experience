@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dream Atlas — Find your dream</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .match-page {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 72px 24px 120px;
+    }
+
+    .match-eyebrow {
+      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--ink3); margin-bottom: 16px;
+    }
+
+    .match-title {
+      font-family: var(--serif);
+      font-size: 42px; font-weight: 400; line-height: 1.15;
+      color: var(--ink); margin-bottom: 12px;
+    }
+    .match-title em { font-style: italic; }
+
+    .match-sub {
+      font-size: 14px; color: var(--ink2); line-height: 1.7;
+      margin-bottom: 40px; max-width: 480px;
+    }
+
+    /* Input area */
+    .input-wrap {
+      position: relative; margin-bottom: 16px;
+    }
+    #dream-input {
+      width: 100%;
+      min-height: 140px;
+      resize: vertical;
+      font-family: var(--serif);
+      font-size: 16px; line-height: 1.7; color: var(--ink);
+      background: var(--paper);
+      border: 0.5px solid rgba(0,0,0,0.15);
+      border-radius: 3px;
+      padding: 16px 18px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    #dream-input:focus { border-color: rgba(0,0,0,0.35); }
+    #dream-input::placeholder { color: var(--ink3); font-style: italic; }
+
+    .input-footer {
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .input-hint { font-size: 11px; color: var(--ink3); }
+
+    #find-btn {
+      font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase;
+      color: var(--paper); background: var(--ink);
+      border: none; border-radius: 2px;
+      padding: 10px 22px; cursor: pointer;
+      font-family: var(--sans);
+      transition: opacity 0.2s;
+    }
+    #find-btn:disabled { opacity: 0.4; cursor: default; }
+
+    /* Status */
+    #status {
+      font-size: 12px; color: var(--ink3);
+      margin: 24px 0; min-height: 18px;
+      font-family: var(--sans);
+    }
+
+    /* Theme chips */
+    #your-themes {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      margin-bottom: 32px; min-height: 0;
+    }
+    .theme-chip {
+      font-size: 9.5px; letter-spacing: 0.07em; text-transform: uppercase;
+      padding: 3px 9px; border-radius: 10px;
+      color: rgba(255,255,255,0.92);
+      font-family: var(--sans);
+    }
+
+    /* Results */
+    #results { display: none; }
+
+    .results-label {
+      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--ink3); margin-bottom: 24px;
+    }
+
+    .match-card {
+      border-top: 0.5px solid var(--rule);
+      padding: 24px 0;
+    }
+
+    .match-resonance {
+      font-family: var(--serif);
+      font-size: 16px; font-style: italic;
+      color: var(--ink); line-height: 1.65;
+      margin-bottom: 14px;
+    }
+
+    .match-text {
+      font-size: 13px; color: var(--ink2);
+      line-height: 1.7; margin-bottom: 12px;
+      padding-left: 14px;
+      border-left: 2px solid var(--rule);
+    }
+
+    .match-meta {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .match-themes { display: flex; gap: 5px; flex-wrap: wrap; }
+    .match-source {
+      font-size: 10px; color: var(--ink3);
+      font-family: var(--sans); letter-spacing: 0.03em;
+    }
+
+    /* No results */
+    .no-results {
+      font-size: 14px; color: var(--ink3);
+      font-family: var(--serif); font-style: italic;
+      padding: 24px 0;
+    }
+
+    @media (max-width: 600px) {
+      .match-page { padding: 40px 20px 80px; }
+      .match-title { font-size: 32px; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-logo">Atlas <span>of human experience</span></div>
+    <div class="nav-links">
+      <a href="index.html">Collection</a>
+      <a href="about.html">About</a>
+    </div>
+  </nav>
+
+  <div class="match-page">
+    <div class="match-eyebrow" style="display:flex;justify-content:space-between;">
+      <span>Dream matching</span>
+      <a href="community.html" style="color:var(--ink3);text-decoration:none;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;transition:color 0.2s;" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--ink3)'">← Back to dreams</a>
+    </div>
+    <h1 class="match-title">Find others who have <em>dreamed like you</em></h1>
+    <p class="match-sub">Describe a dream and we'll search 847 real dreams from around the world for the ones that resonate most — not just the same themes, but the same emotional texture.</p>
+
+    <div class="input-wrap">
+      <textarea id="dream-input" placeholder="I was back in my childhood home, but the rooms kept changing…"></textarea>
+    </div>
+    <div class="input-footer">
+      <span class="input-hint">The more detail, the better the match.</span>
+      <button id="find-btn">Find matches →</button>
+    </div>
+
+    <div id="status"></div>
+    <div id="your-themes"></div>
+    <div id="results"></div>
+  </div>
+
+  <script>
+    const THEME_COLORS = {
+      deceased:[194,82,138], chased:[224,82,82], flying:[112,104,204],
+      falling:[196,146,10], teeth:[42,168,130], ancestors:[212,120,74],
+      exam:[74,142,194], divine:[122,170,48], paralysis:[100,60,180],
+      lucid:[20,180,200], apocalypse:[200,70,30], celebrity:[200,160,20],
+    };
+
+    const btn      = document.getElementById('find-btn');
+    const input    = document.getElementById('dream-input');
+    const status   = document.getElementById('status');
+    const themesEl = document.getElementById('your-themes');
+    const results  = document.getElementById('results');
+
+    const STATUSES = [
+      'Analyzing your dream…',
+      'Searching 847 dreams…',
+      'Finding resonances…',
+    ];
+
+    async function find() {
+      const text = input.value.trim();
+      if (text.length < 20) {
+        status.textContent = 'Please describe your dream in a bit more detail.';
+        return;
+      }
+
+      btn.disabled = true;
+      results.style.display = 'none';
+      themesEl.innerHTML = '';
+
+      let si = 0;
+      status.textContent = STATUSES[si];
+      const tick = setInterval(() => {
+        si = Math.min(si + 1, STATUSES.length - 1);
+        status.textContent = STATUSES[si];
+      }, 1800);
+
+      try {
+        const res  = await fetch('/api/match', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text }),
+        });
+        const data = await res.json();
+        clearInterval(tick);
+        render(data);
+      } catch (e) {
+        clearInterval(tick);
+        status.textContent = 'Something went wrong. Please try again.';
+        btn.disabled = false;
+      }
+    }
+
+    function render({ matches, themes, keywords }) {
+      btn.disabled = false;
+      status.textContent = '';
+
+      // Show detected themes
+      if (themes?.length) {
+        themesEl.innerHTML = themes.map(t => {
+          const c = THEME_COLORS[t] ?? [160,155,150];
+          return `<span class="theme-chip" style="background:rgb(${c.join(',')})">
+            ${t.replace(/_/g,' ')}
+          </span>`;
+        }).join('');
+      }
+
+      results.style.display = 'block';
+
+      if (!matches?.length) {
+        results.innerHTML = '<p class="no-results">No close matches found in the corpus — your dream may be unusually specific. Try describing it differently.</p>';
+        return;
+      }
+
+      results.innerHTML = `<div class="results-label">${matches.length} resonant dream${matches.length === 1 ? '' : 's'} found</div>` +
+        matches.map(m => {
+          const chips = (m.themes ?? []).map(t => {
+            const c = THEME_COLORS[t] ?? [160,155,150];
+            return `<span class="theme-chip" style="background:rgb(${c.join(',')});font-size:9px;padding:2px 7px">${t}</span>`;
+          }).join('');
+
+          const excerpt = m.text.length > 280 ? m.text.slice(0, 280) + '…' : m.text;
+          const source  = m.sub === 'LucidDreaming' ? 'r/LucidDreaming'
+                        : m.sub === 'Nightmares'    ? 'r/Nightmares'
+                        : 'r/Dreams';
+
+          return `<div class="match-card">
+            <div class="match-resonance">${m.resonance}</div>
+            <blockquote class="match-text">${excerpt}</blockquote>
+            <div class="match-meta">
+              <div class="match-themes">${chips}</div>
+              <span class="match-source">${source}</span>
+            </div>
+          </div>`;
+        }).join('');
+    }
+
+    btn.addEventListener('click', find);
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Enter' && e.metaKey) find();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dream Atlas — A Visual Atlas of Human Experience</title>
+  <meta name="description" content="Recurring dream themes mapped across nine world regions. An interactive 3D globe where each continent blooms with colored dots representing dream distributions." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">Atlas <span>of human experience</span></div>
+    <div class="nav-links">
+      <a href="index.html" class="active">Collection</a>
+      <a href="about.html">About</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-label">A visual atlas</div>
+    <h1>The world,<br>seen through <em>data</em></h1>
+    <p>A growing collection of data visualizations that explore how humans live, feel, dream, and move — mapped across geography, culture, and time.</p>
+  </div>
+
+  <div class="featured">
+    <div class="section-label">Featured</div>
+    <div class="featured-card" onclick="window.location.href='community.html'">
+      <div class="featured-visual">
+        <svg viewBox="0 0 200 200" width="200" height="200" style="opacity:0.88">
+          <circle cx="100" cy="100" r="72" fill="none" stroke="#b8b2a8" stroke-width="0.5"/>
+          <circle cx="100" cy="100" r="72" fill="rgba(240,236,228,0.3)"/>
+          <ellipse cx="100" cy="100" rx="72" ry="28" fill="none" stroke="#c8c2b8" stroke-width="0.4"/>
+          <ellipse cx="100" cy="100" rx="72" ry="52" fill="none" stroke="#c8c2b8" stroke-width="0.4"/>
+          <line x1="100" y1="28" x2="100" y2="172" stroke="#c8c2b8" stroke-width="0.4"/>
+          <line x1="28" y1="100" x2="172" y2="100" stroke="#c8c2b8" stroke-width="0.4"/>
+          <line x1="46" y1="55" x2="154" y2="145" stroke="#c8c2b8" stroke-width="0.4"/>
+          <line x1="154" y1="55" x2="46" y2="145" stroke="#c8c2b8" stroke-width="0.4"/>
+          <circle cx="78" cy="82" r="3.5" fill="#C2528A" opacity="0.8"/>
+          <circle cx="88" cy="76" r="2.5" fill="#C2528A" opacity="0.7"/>
+          <circle cx="70" cy="90" r="2" fill="#D4784A" opacity="0.8"/>
+          <circle cx="82" cy="70" r="3" fill="#D4784A" opacity="0.6"/>
+          <circle cx="95" cy="85" r="2" fill="#7068CC" opacity="0.8"/>
+          <circle cx="120" cy="78" r="3.5" fill="#4A8EC2" opacity="0.8"/>
+          <circle cx="130" cy="85" r="2.5" fill="#4A8EC2" opacity="0.7"/>
+          <circle cx="125" cy="70" r="2" fill="#7AAA30" opacity="0.8"/>
+          <circle cx="115" cy="90" r="3" fill="#7AAA30" opacity="0.6"/>
+          <circle cx="138" cy="76" r="2" fill="#C4920A" opacity="0.8"/>
+          <circle cx="85" cy="118" r="3" fill="#2AA882" opacity="0.8"/>
+          <circle cx="95" cy="112" r="2.5" fill="#2AA882" opacity="0.7"/>
+          <circle cx="75" cy="125" r="2" fill="#C2528A" opacity="0.7"/>
+          <circle cx="108" cy="122" r="3.5" fill="#E05252" opacity="0.8"/>
+          <circle cx="120" cy="115" r="2" fill="#E05252" opacity="0.6"/>
+          <circle cx="130" cy="110" r="2.5" fill="#9B6FB5" opacity="0.8"/>
+          <circle cx="100" cy="58" r="2" fill="#7068CC" opacity="0.6"/>
+          <circle cx="62" cy="108" r="2" fill="#D4784A" opacity="0.7"/>
+          <circle cx="145" cy="102" r="2.5" fill="#4A8EC2" opacity="0.6"/>
+          <circle cx="148" cy="118" r="2" fill="#7AAA30" opacity="0.6"/>
+        </svg>
+      </div>
+      <div class="featured-body">
+        <div class="featured-tag">Sleep &amp; culture</div>
+        <h2>What the world <em>dreams</em> about</h2>
+        <p>Recurring dream themes mapped across nine world regions — from ancestor visitations in Sub-Saharan Africa to exam anxiety in East Asia. An interactive 3D globe where each continent blooms with colored dots representing dream distributions.</p>
+        <div class="featured-meta">
+          <span>9 regions</span>
+          <span>8 themes</span>
+          <span>Cross-cultural research</span>
+        </div>
+        <button class="open-btn" onclick="window.location.href='community.html'">Explore visualization →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-section">
+    <div class="section-label">Full collection</div>
+    <div class="viz-grid">
+
+      <div class="viz-card" onclick="window.location.href='community.html'">
+        <div class="viz-thumb" style="background:#edeae3;">
+          <div class="mini-dots">
+            <div class="mini-dot" style="background:#C2528A"></div><div class="mini-dot" style="background:#4A8EC2"></div><div class="mini-dot" style="background:#7AAA30"></div><div class="mini-dot" style="background:#D4784A"></div><div class="mini-dot" style="background:#C2528A"></div>
+            <div class="mini-dot" style="background:#7068CC"></div><div class="mini-dot" style="background:#E05252"></div><div class="mini-dot" style="background:#2AA882"></div><div class="mini-dot" style="background:#C4920A"></div><div class="mini-dot" style="background:#9B6FB5"></div>
+            <div class="mini-dot" style="background:#4A8EC2"></div><div class="mini-dot" style="background:#C2528A"></div><div class="mini-dot" style="background:#7AAA30"></div><div class="mini-dot" style="background:#D4784A"></div><div class="mini-dot" style="background:#7068CC"></div>
+            <div class="mini-dot" style="background:#E05252"></div><div class="mini-dot" style="background:#2AA882"></div><div class="mini-dot" style="background:#C4920A"></div><div class="mini-dot" style="background:#C2528A"></div><div class="mini-dot" style="background:#9B6FB5"></div>
+          </div>
+        </div>
+        <div class="viz-tag">Sleep &amp; culture</div>
+        <h3>What the world <em>dreams</em></h3>
+        <p>Dream themes across 9 regions, visualized as a rotating 3D globe with continent dot density.</p>
+        <div class="viz-card-footer"><span>Interactive · 3D</span><span class="viz-arrow">→</span></div>
+      </div>
+
+      <div class="viz-card coming-soon">
+        <div class="viz-thumb" style="background:#e8f0eb;">
+          <svg width="80" height="60" viewBox="0 0 80 60"><rect x="8" y="38" width="10" height="18" fill="#7AAA30" opacity="0.5" rx="1"/><rect x="22" y="28" width="10" height="28" fill="#7AAA30" opacity="0.6" rx="1"/><rect x="36" y="18" width="10" height="38" fill="#7AAA30" opacity="0.7" rx="1"/><rect x="50" y="32" width="10" height="24" fill="#7AAA30" opacity="0.5" rx="1"/><rect x="64" y="22" width="10" height="34" fill="#7AAA30" opacity="0.6" rx="1"/></svg>
+        </div>
+        <div class="viz-tag">Food &amp; geography</div>
+        <h3>Where the world goes <em>hungry</em></h3>
+        <p>Food insecurity rates mapped against climate, conflict, and GDP — a layered global portrait.</p>
+        <div class="viz-card-footer"><span>Coming soon</span><span class="viz-arrow">—</span></div>
+      </div>
+
+      <div class="viz-card coming-soon">
+        <div class="viz-thumb" style="background:#eae8f0;">
+          <svg width="80" height="60" viewBox="0 0 80 60"><circle cx="25" cy="30" r="14" fill="none" stroke="#7068CC" stroke-width="0.8" opacity="0.5"/><circle cx="40" cy="30" r="14" fill="none" stroke="#C2528A" stroke-width="0.8" opacity="0.5"/><circle cx="55" cy="30" r="14" fill="none" stroke="#4A8EC2" stroke-width="0.8" opacity="0.5"/><circle cx="25" cy="30" r="5" fill="#7068CC" opacity="0.3"/><circle cx="55" cy="30" r="5" fill="#4A8EC2" opacity="0.3"/></svg>
+        </div>
+        <div class="viz-tag">Language &amp; identity</div>
+        <h3>How languages <em>cluster</em></h3>
+        <p>The relatedness of 200 living languages, mapped by shared vocabulary and phonology.</p>
+        <div class="viz-card-footer"><span>Coming soon</span><span class="viz-arrow">—</span></div>
+      </div>
+
+      <div class="viz-card coming-soon">
+        <div class="viz-thumb" style="background:#f0ebe3;">
+          <svg width="80" height="60" viewBox="0 0 80 60"><polyline points="5,50 20,35 35,40 50,20 65,25 75,10" fill="none" stroke="#C4920A" stroke-width="1.2" opacity="0.6"/><circle cx="50" cy="20" r="3" fill="#C4920A" opacity="0.7"/></svg>
+        </div>
+        <div class="viz-tag">Climate</div>
+        <h3>Temperature <em>anomalies</em> since 1880</h3>
+        <p>A century and a half of warming, broken down by region, season, and decade.</p>
+        <div class="viz-card-footer"><span>Coming soon</span><span class="viz-arrow">—</span></div>
+      </div>
+
+      <div class="viz-card coming-soon">
+        <div class="viz-thumb" style="background:#f0eaea;">
+          <svg width="80" height="60" viewBox="0 0 80 60"><circle cx="25" cy="35" r="10" fill="#E05252" opacity="0.25"/><circle cx="45" cy="28" r="16" fill="#E05252" opacity="0.18"/><circle cx="62" cy="38" r="8" fill="#E05252" opacity="0.3"/><circle cx="15" cy="25" r="6" fill="#E05252" opacity="0.2"/></svg>
+        </div>
+        <div class="viz-tag">Migration</div>
+        <h3>Where people <em>move</em></h3>
+        <p>Global migration flows since 2000 — origins, destinations, and the routes between.</p>
+        <div class="viz-card-footer"><span>Coming soon</span><span class="viz-arrow">—</span></div>
+      </div>
+
+      <div class="viz-card coming-soon">
+        <div class="viz-thumb" style="background:#eaf0f0;">
+          <svg width="80" height="60" viewBox="0 0 80 60"><rect x="5" y="5" width="70" height="50" rx="2" fill="none" stroke="#2AA882" stroke-width="0.5" opacity="0.35"/><circle cx="20" cy="20" r="3" fill="#2AA882" opacity="0.5"/><circle cx="45" cy="15" r="5" fill="#2AA882" opacity="0.4"/><circle cx="60" cy="30" r="4" fill="#2AA882" opacity="0.6"/><circle cx="30" cy="40" r="6" fill="#2AA882" opacity="0.35"/></svg>
+        </div>
+        <div class="viz-tag">Wellbeing</div>
+        <h3>The geography of <em>loneliness</em></h3>
+        <p>Self-reported loneliness rates across 40 countries — and what predicts them.</p>
+        <div class="viz-card-footer"><span>Coming soon</span><span class="viz-arrow">—</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="about-strip">
+    <div class="about-col">
+      <h4>What is this?</h4>
+      <p>A slow-growing collection of data visualizations about the human experience — built with care, one dataset at a time.</p>
+    </div>
+    <div class="about-col">
+      <h4>The data</h4>
+      <p>Every visualization links to its source. We use open datasets, academic research, and public records — nothing behind a paywall.</p>
+    </div>
+    <div class="about-col">
+      <h4>Suggest a topic</h4>
+      <p>Have a dataset or a question you want explored? The atlas grows through curiosity.</p>
+    </div>
+  </div>
+
+  <footer>
+    <p>Atlas of Human Experience</p>
+    <p>Open data · Three.js · D3 · TopoJSON</p>
+  </footer>
+
+</body>
+</html>
